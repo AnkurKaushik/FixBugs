@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -92,9 +93,21 @@ public class Main {
         int leng = arrayList.size();
         System.out.println("Enter the expense you need to search:\t");
         //Complete the method
+        //scanner added to read user input
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        //returns whether expense was found
+        if(arrayList.contains(input))
+            System.out.println("Your expenditure was found!");
+        else System.out.println("The expenditure was not found, please try again");
     }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         int arrlength =  arrayList.size();
        //Complete the method. The expenses should be sorted in ascending order.
+
+        //using streams, returns a sorted version of the arraylist
+        //must be typecasted to ArrayList since collect returns type List
+        arrayList = (ArrayList<Integer>)arrayList.stream().sorted().collect(Collectors.toList());
+        System.out.println(arrayList);
     }
 }
