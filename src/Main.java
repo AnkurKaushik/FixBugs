@@ -4,6 +4,12 @@ import java.util.stream.Collectors;
 
 public class Main {
 
+    //declared the following two arraylists here so they don't get overwritten each loop
+    static ArrayList<Integer> arrlist = new ArrayList<Integer>();
+    static ArrayList<Integer> expenses = new ArrayList<Integer>();
+    //setup method is called if firstloop is 0
+    static int firstLoop = 0;
+
     public static void main(String[] args) {
         /*System.out.println("Hello World!");*/
         System.out.println("\n**************************************\n");
@@ -12,7 +18,18 @@ public class Main {
         optionsSelection();
 
     }
+    private static void setup()
+    {
+        //only called once at the start so values don't keep getting overwritten
+        expenses.add(1000);
+        expenses.add(2300);
+        expenses.add(45000);
+        expenses.add(32000);
+        expenses.add(110);
+        expenses.addAll(arrlist);
+    }
     private static void optionsSelection() {
+
         String[] arr = {"1. I wish to review my expenditure",
                 "2. I wish to add my expenditure",
                 "3. I wish to delete my expenditure",
@@ -26,14 +43,13 @@ public class Main {
             System.out.println(arr[i]);
             // display the all the Strings mentioned in the String array
         }
-        ArrayList<Integer> arrlist = new ArrayList<Integer>();
-        ArrayList<Integer> expenses = new ArrayList<Integer>();
-        expenses.add(1000);
-        expenses.add(2300);
-        expenses.add(45000);
-        expenses.add(32000);
-        expenses.add(110);
-        expenses.addAll(arrlist);
+
+        //checks if setup needs to be called
+        if(firstLoop == 0)
+            setup();
+        //increments it so setup isn't called multiple times
+        firstLoop++;
+
         System.out.println("\nEnter your choice:\t");
         Scanner sc = new Scanner(System.in);
         int  options =  sc.nextInt();
